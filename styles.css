@@ -24,14 +24,15 @@ main{max-width:1180px;margin:0 auto;padding:0 16px}
 .cta .pill{fill:#fff;stroke:var(--ink);stroke-width:2;transition:fill .2s}
 .cta text{font:700 var(--cta-size,26px) "Inter",system-ui,sans-serif;fill:var(--ink);transition:fill .2s}
 .cta .arrow{stroke:var(--ink);stroke-width:2.5;fill:none;transition:transform .2s}
-.cta{cursor:pointer;outline:none}
+.cta,.item-link{cursor:pointer;outline:none}
+.item-link .outline{fill:transparent;pointer-events:all}
 .hero{--cta-size:30px}
-.cta:hover .pill,.cta:focus-visible .pill{fill:var(--ink)}
-.cta:hover text,.cta:focus-visible text{fill:#fff}
-.cta:hover .arrow,.cta:focus-visible .arrow{stroke:#fff;transform:translateX(5px)}
+.callout:has(a:hover) .pill,.cta:focus-visible .pill{fill:var(--ink)}
+.callout:has(a:hover) .cta text,.cta:focus-visible text{fill:#fff}
+.callout:has(a:hover) .arrow,.cta:focus-visible .arrow{stroke:#fff;transform:translateX(5px)}
 .target{transition:filter .2s}
-.callout:has(.cta:hover) .outline{stroke-width:8}
-.callout:has(.cta:hover) .outline-glow{opacity:.9;animation:none}
+.callout:has(a:hover) .outline,.callout:has(.cta:focus-visible) .outline{stroke-width:8}
+.callout:has(a:hover) .outline-glow,.callout:has(.cta:focus-visible) .outline-glow{opacity:.9;animation:none}
 @keyframes pulse{50%{opacity:.35}}
 @media (prefers-reduced-motion:reduce){.outline-glow{animation:none}}
 
