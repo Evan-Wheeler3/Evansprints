@@ -20,9 +20,10 @@ main{max-width:1180px;margin:0 auto;padding:0 16px}
 .leader-halo{stroke:#fff;stroke-width:7;fill:none;stroke-linecap:round}
 .dot{fill:var(--accent)}
 .cta .pill{fill:#fff;stroke:var(--ink);stroke-width:2;transition:fill .2s}
-.cta text{font:700 26px "Inter",system-ui,sans-serif;fill:var(--ink);transition:fill .2s}
+.cta text{font:700 var(--cta-size,26px) "Inter",system-ui,sans-serif;fill:var(--ink);transition:fill .2s}
 .cta .arrow{stroke:var(--ink);stroke-width:2.5;fill:none;transition:transform .2s}
 .cta{cursor:pointer;outline:none}
+.hero{--cta-size:30px}
 .cta:hover .pill,.cta:focus-visible .pill{fill:var(--ink)}
 .cta:hover text,.cta:focus-visible text{fill:#fff}
 .cta:hover .arrow,.cta:focus-visible .arrow{stroke:#fff;transform:translateX(5px)}
@@ -48,3 +49,7 @@ main{max-width:1180px;margin:0 auto;padding:0 16px}
 .price{font-weight:700}
 .btn{display:block;margin:0 16px 16px;padding:10px;border-radius:999px;border:2px solid var(--ink);text-align:center;font-weight:700;text-decoration:none;font-size:14px}
 .btn:hover{background:var(--ink);color:#fff}
+
+/* photo product cards: white photo backgrounds blend into the card */
+.card .img.photo{background:#fff;place-items:stretch}
+.card .img.photo img{width:100%;height:100%;object-fit:cover;display:block}
