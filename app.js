@@ -49,44 +49,35 @@
   const svg = $('#hero');
   const FOCUS = {
     home: null,
-    mini: { x: 1190, y: 872, w: 180, h: 92, fill: .5 },
-    tag:  { x: 425, y: 175, w: 180, h: 262, fill: .8 },
+    mini: { x: 1190, y: 872, w: 180, h: 92, fill: .55 },
+    tag:  { x: 432, y: 240, w: 165, h: 195, fill: .85 },
     tagPhone: { x: 432, y: 300, w: 160, h: 132, fill: .8 },
   };
   const wide = () => matchMedia('(min-width: 861px)').matches;
-  const panel = $('#panel');
+  const panel = $('#panel'), stage = $('#stage'), zoomer = $('#zoomer');
+  const MAX_PX_PER_PHOTO_PX = 2.6; // limit how far the photo is blown up
 
-  function targetView(key) {
-    const r = svg.getBoundingClientRect();
-    const W = r.width || 1, H = r.height || 1;
+  // Zoom = one CSS transform on the wrapper. The browser animates it on the GPU,
+  // so nothing inside the SVG is re-rendered frame by frame.
+  function targetTransform(key) {
     const f = FOCUS[key] && (!wide() && FOCUS[key + 'Phone']) || FOCUS[key];
-    if (!f) { // contain the full photo
-      const k = Math.max(1536 / W, 1024 / H);
-      return [(1536 - W*k) / 2, (1024 - H*k) / 2, W*k, H*k];
-    }
+    if (!f) return 'none';
+    const W = stage.clientWidth, H = stage.clientHeight;
+    const k = Math.min(W / 1536, H / 1024);           // photo px -> screen px at rest
+    const ox = (W - 1536 * k) / 2, oy = (H - 1024 * k) / 2;
     const visW = wide() ? Math.max(200, W - panel.offsetWidth) : W;
-    const k = Math.max(f.w / (visW * f.fill), f.h / (H * f.fill), .42); // .42 caps upscaling of the photo
-    const cx = f.x + f.w / 2, cy = f.y + f.h / 2;
-    return [cx - (visW / 2) * k, cy - (H / 2) * k, W * k, H * k];
+    const s = Math.min(visW * f.fill / (f.w * k), H * f.fill / (f.h * k), MAX_PX_PER_PHOTO_PX / k);
+    const cx = ox + (f.x + f.w / 2) * k, cy = oy + (f.y + f.h / 2) * k;
+    return `translate(${(visW / 2 - s * cx).toFixed(1)}px, ${(H / 2 - s * cy).toFixed(1)}px) scale(${s.toFixed(4)})`;
   }
-  const getView = () => svg.getAttribute('viewBox').split(/\s+/).map(Number);
-  const setView = v => svg.setAttribute('viewBox', v.map(n => n.toFixed(2)).join(' '));
-  let anim = 0, viewKey = 'home';
-  function zoomTo(key, dur = 900) {
+  let viewKey = 'home';
+  function zoomTo(key, animate = true) {
     viewKey = key;
-    cancelAnimationFrame(anim);
-    const from = getView(), to = targetView(key);
-    if (dur === 0 || matchMedia('(prefers-reduced-motion: reduce)').matches) return setView(to);
-    const t0 = performance.now();
-    const ease = t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
-    const step = now => {
-      const t = Math.min(1, (now - t0) / dur), e = ease(t);
-      setView(from.map((a, i) => a + (to[i] - a) * e));
-      if (t < 1) anim = requestAnimationFrame(step);
-    };
-    anim = requestAnimationFrame(step);
+    zoomer.classList.toggle('instant', !animate);
+    zoomer.style.transform = targetTransform(key);
+    if (!animate) { void zoomer.offsetWidth; zoomer.classList.remove('instant'); }
   }
-  addEventListener('resize', () => zoomTo(viewKey, 0));
+  addEventListener('resize', () => zoomTo(viewKey, false));
 
   /* ---------------- customizer state ---------------- */
   const state = {
@@ -124,13 +115,20 @@
     return Math.round(unit * qty * (qty >= bulk.qty ? 1 - bulk.off : 1) * 100) / 100;
   }
 
+  // squeeze long engraving text to fit the tag face
+  function fitText(el, text, max) {
+    el.textContent = text; el.removeAttribute('textLength'); el.removeAttribute('lengthAdjust');
+    let w = 0; try { w = el.getComputedTextLength(); } catch {}
+    if (w > max) { el.setAttribute('textLength', max); el.setAttribute('lengthAdjust', 'spacingAndGlyphs'); }
+  }
+
   function update() {
     const k = state.kind; if (!k) return;
     if (k === 'mini') {
       const c = miniColor(), s = state.mini;
       renderMiniSwatches();
       $('#miniColorName').textContent = c.name + (c.extra ? ` (+$${c.extra})` : '');
-      $('#mMini').setAttribute('values', matrixValues(c.fx));
+      $('#mMini').setAttribute('values', matrixValues(s.finish === 'Matte' ? [...c.fx, ['sat', .85], ['bri', .94]] : c.fx));
       $('#initialsField').hidden = s.stamp !== 'initials';
       const txt = $('#stampText');
       txt.textContent = s.stamp === 'initials' ? s.initials.toUpperCase() : '';
@@ -150,6 +148,12 @@
       $('#pvBottom').textContent = t.bottom.toUpperCase();
       const family = t.font === 'classic' ? 'Georgia, "Times New Roman", serif' : 'Inter, system-ui, sans-serif';
       $$('#tagPreview .pv-ink').forEach(n => n.setAttribute('font-family', family));
+      // engraving on the photo's tag
+      const num = String(t.number || '');
+      $$('[data-engr="num"]').forEach(n => { n.textContent = num; n.setAttribute('font-size', [40, 40, 36, 28, 22][num.length] || 22); });
+      $$('[data-engr="top"]').forEach(n => fitText(n, t.top.toUpperCase(), 62));
+      $$('[data-engr="bottom"]').forEach(n => fitText(n, t.bottom.toUpperCase(), 52));
+      $$('#tintTag text').forEach(n => n.setAttribute('font-family', family));
     }
     const unit = unitPrice();
     $('#panelPrice').textContent = money(unit);
@@ -168,7 +172,7 @@
   });
   tagForm.addEventListener('input', e => {
     const { name, value } = e.target;
-    if (name === 'number') state.tag.number = Math.max(0, Math.min(9999, parseInt(value, 10) || 0));
+    if (name === 'number') { const v = value.replace(/\D/g, '').slice(0, 4); if (v !== value) e.target.value = v; state.tag.number = v ? Number(v) : ''; }
     if (name in state.tag && name !== 'number') state.tag[name] = value;
     update();
   });
@@ -304,6 +308,27 @@
   $('#tagGrid').innerHTML = METALS.map(m => card(`#tag?metal=${m.id}`, m.img, 'none', `${m.name} Tag`, 'Engraved · your number', money(m.price), 'Engrave yours')).join('')
     + card('#tag?qty=10&top=YOUR%20LEAGUE', 'tag-stainless.jpg', 'none', 'League Set (10)', 'Numbered set · 20% off', money(lineTotal('tag', 18, 10)), 'Build a set');
 
+  /* ---------------- keyboard: easy to dismiss on phones ---------------- */
+  const isField = el => el && /^(INPUT|SELECT|TEXTAREA)$/.test(el.tagName) && el.type !== 'radio';
+  // Return / "Done" closes the keyboard instead of submitting
+  panel.addEventListener('keydown', e => { if (e.key === 'Enter' && isField(e.target)) { e.preventDefault(); e.target.blur(); } });
+  // tapping anywhere that isn't a field closes it
+  document.addEventListener('pointerdown', e => {
+    const a = document.activeElement;
+    if (isField(a) && !isField(e.target) && !e.target.closest('label.field, .kb-bar')) a.blur();
+  }, true);
+  // dragging the panel closes it too
+  panel.addEventListener('touchmove', () => { const a = document.activeElement; if (isField(a) && a.tagName !== 'SELECT') a.blur(); }, { passive: true });
+  // a "Done" bar pinned above the on-screen keyboard (iPhone number pads have no return key)
+  const kb = $('#kbBar'), vv = window.visualViewport;
+  const touch = matchMedia('(pointer: coarse)').matches;
+  const placeKb = () => { if (vv) kb.style.transform = `translateY(${vv.offsetTop + vv.height - kb.offsetHeight}px)`; };
+  panel.addEventListener('focusin', e => { if (touch && e.target.tagName === 'INPUT' && isField(e.target)) { kb.hidden = false; placeKb(); } });
+  panel.addEventListener('focusout', () => setTimeout(() => { if (!isField(document.activeElement)) kb.hidden = true; }, 0));
+  kb.addEventListener('pointerdown', e => e.preventDefault()); // keep focus until we blur on purpose
+  kb.querySelector('button').addEventListener('click', () => document.activeElement.blur());
+  if (vv) { vv.addEventListener('resize', placeKb); vv.addEventListener('scroll', placeKb); }
+
   /* ---------------- routing (#mini, #tag, #cart) ---------------- */
   function route(initial) {
     const [name, qs = ''] = decodeURI(location.hash.slice(1)).split('?');
@@ -311,7 +336,7 @@
     if (name === 'mini' || name === 'tag') return openCustomizer(name, params);
     if (name === 'cart') return openCart();
     closeCart(); closeCustomizer();
-    if (initial) zoomTo('home', 0);
+    if (initial) zoomTo('home', false);
     const target = name && document.getElementById(name);
     if (target && !initial) requestAnimationFrame(() => target.scrollIntoView({ behavior: 'smooth' }));
   }
@@ -324,6 +349,6 @@
   addEventListener('keydown', e => { if (e.key === 'Escape' && (state.kind || cartEl.classList.contains('open'))) goHome(); });
 
   renderCart();
-  zoomTo('home', 0);
+  zoomTo('home', false);
   route(true);
 })();
