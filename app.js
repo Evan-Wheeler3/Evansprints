@@ -17,9 +17,9 @@
     { id: 'glow',   name: 'Glow in the dark', hex: '#c9f2c0', fx: [['hue', 80], ['sat', .45], ['bri', 1.35]], extra: 2 },
   ];
   const METALS = [
-    { id: 'stainless', name: 'Stainless', price: 18, hex: '#c3c9cf', fx: [], grad: ['#f6f8fa', '#bcc3cb', '#8e959d'], img: 'tag-stainless.jpg' },
-    { id: 'brass',     name: 'Brass',     price: 22, hex: '#d4a640', fx: [['sepia', .85], ['sat', 2.2], ['hue', -8], ['bri', .95]], grad: ['#fbe6a6', '#d4a640', '#9c7419'], img: 'tag-brass.jpg' },
-    { id: 'copper',    name: 'Copper',    price: 20, hex: '#c47447', fx: [['sepia', .9], ['sat', 2.6], ['hue', -28], ['bri', .72]], grad: ['#ffd2b8', '#c47447', '#8a3f1d'], img: 'tag-copper.jpg' },
+    { id: 'stainless', name: 'Stainless', price: 18, hex: '#c3c9cf', fx: [], grad: ['#f6f8fa', '#bcc3cb', '#8e959d'], img: 'tag-stainless-sky.jpg' },
+    { id: 'brass',     name: 'Brass',     price: 22, hex: '#d4a640', fx: [['sepia', .85], ['sat', 2.2], ['hue', -8], ['bri', .95]], grad: ['#fbe6a6', '#d4a640', '#9c7419'], img: 'tag-brass-sky.jpg' },
+    { id: 'copper',    name: 'Copper',    price: 20, hex: '#c47447', fx: [['sepia', .9], ['sat', 2.6], ['hue', -28], ['bri', .72]], grad: ['#ffd2b8', '#c47447', '#8a3f1d'], img: 'tag-copper-sky.jpg' },
   ];
   const MINI_BASE = 6, MINI_INITIALS = 1, MINI_BULK = { qty: 5, off: .15 };
   const TAG_CARABINER = 3, TAG_BULK = { qty: 10, off: .20 };
@@ -265,7 +265,7 @@
     if (k === 'mini') {
       const c = miniColor(), s = state.mini;
       const stamp = { none: 'Ring stamp', basket: 'Basket stamp', star: 'Star stamp', initials: s.initials ? `Initials “${esc(s.initials.toUpperCase())}”` : 'Ring stamp' }[s.stamp];
-      item = { title: `${c.name} Mini`, summary: `${stamp} · ${s.finish}`, img: 'mini-orange.jpg', filter: cssFilter(c.fx) };
+      item = { title: `${c.name} Mini`, summary: `${stamp} · ${s.finish}`, img: 'mini-orange.png', filter: cssFilter(c.fx) };
     } else {
       const m = metal(), t = state.tag;
       item = { title: `${m.name} Bag Tag #${t.number}`, summary: `${esc(t.top || '—')} / ${esc(t.bottom || '—')} · ${t.font === 'classic' ? 'Serif' : 'Block'} · ${t.attach}`, img: m.img, filter: 'none' };
@@ -303,10 +303,10 @@
     </a>`;
   $('#miniGrid').innerHTML = ['orange', 'teal', 'pink', 'glow'].map(id => {
     const c = MINI_COLORS.find(x => x.id === id);
-    return card(`#mini?color=${id}`, 'mini-orange.jpg', cssFilter(c.fx), `${c.name} Mini`, 'Stamped plastic', money(MINI_BASE + (c.extra || 0)), 'Customize');
+    return card(`#mini?color=${id}`, 'mini-orange.png', cssFilter(c.fx), `${c.name} Mini`, 'Stamped plastic', money(MINI_BASE + (c.extra || 0)), 'Customize');
   }).join('');
   $('#tagGrid').innerHTML = METALS.map(m => card(`#tag?metal=${m.id}`, m.img, 'none', `${m.name} Tag`, 'Engraved · your number', money(m.price), 'Engrave yours')).join('')
-    + card('#tag?qty=10&top=YOUR%20LEAGUE', 'tag-stainless.jpg', 'none', 'League Set (10)', 'Numbered set · 20% off', money(lineTotal('tag', 18, 10)), 'Build a set');
+    + card('#tag?qty=10&top=YOUR%20LEAGUE', 'tag-stainless-sky.jpg', 'none', 'League Set (10)', 'Numbered set · 20% off', money(lineTotal('tag', 18, 10)), 'Build a set');
 
   /* ---------------- keyboard: easy to dismiss on phones ---------------- */
   const isField = el => el && /^(INPUT|SELECT|TEXTAREA)$/.test(el.tagName) && el.type !== 'radio';
