@@ -3,15 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Evansprints Disc Golf</title>
+<title>Lead Card Customs</title>
+<meta name="description" content="Custom disc golf minis and engraved bag tags. Mark your lie, claim your number.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%2215%22 fill=%22%2315181d%22/%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%229%22 fill=%22none%22 stroke=%22%23e6ff00%22 stroke-width=%223%22/%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%222.6%22 fill=%22%23e6ff00%22/%3E%3C/svg%3E">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <header class="site-header">
-  <a class="brand" href="#" data-home>EVANS<span>PRINTS</span></a>
+  <a class="brand" href="#" data-home aria-label="Lead Card Customs home"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#15181d"/><circle cx="16" cy="16" r="9" fill="none" stroke="#e6ff00" stroke-width="3"/><circle cx="16" cy="16" r="2.6" fill="#e6ff00"/></svg><span class="brand-text"><span class="brand-name">LEAD CARD</span><span class="brand-sub">CUSTOMS</span></span></a>
   <nav class="site-nav" aria-label="Main">
     <a href="#mini">Minis</a>
     <a href="#tag">Bag Tags</a>
@@ -221,27 +223,28 @@
 <!-- ============ PAGE CONTENT ============ -->
 <main class="content">
   <section class="intro wrap">
-    <h1>Make your bag unmistakably yours.</h1>
-    <p>Custom mini markers and engraved bag tags, made to order. Tap a highlighted item on the bag to start designing, and watch it change as you go.</p>
+    <p class="eyebrow">Custom disc golf gear</p>
+    <h1>Gear for the lead card.</h1>
+    <p>Custom minis to mark your lie and engraved bag tags to claim your number. Tap the mini or the tags on the bag and design yours live.</p>
     <div class="intro-cta">
-      <a class="btn-primary" href="#mini">Design a mini</a>
-      <a class="btn-ghost" href="#tag">Design a bag tag</a>
+      <a class="btn-primary" href="#mini">Mark your lie</a>
+      <a class="btn-ghost" href="#tag">Claim your number</a>
     </div>
   </section>
 
   <section class="steps wrap" aria-label="How it works">
-    <div class="step"><span>1</span><h3>Pick your piece</h3><p>Choose a mini marker or a bag tag right off the bag.</p></div>
-    <div class="step"><span>2</span><h3>Customize it live</h3><p>Colors, stamps, metals and engraving update on the photo as you go.</p></div>
-    <div class="step"><span>3</span><h3>We make it</h3><p>Every piece is printed or engraved to order and shipped to your door.</p></div>
+    <div class="step"><span>1</span><h3>Pick your gear</h3><p>Grab the mini or the tags right off the bag.</p></div>
+    <div class="step"><span>2</span><h3>Make it yours</h3><p>Colors, stamps, metal and engraving change on the photo as you design.</p></div>
+    <div class="step"><span>3</span><h3>Bring it to the course</h3><p>Every piece is made to order, proofed and shipped in time for league night.</p></div>
   </section>
 
   <section class="wrap shelf">
-    <div class="shelf-head"><h2>Minis</h2><a href="shop-minis.html">View all →</a></div>
+    <div class="shelf-head"><div><p class="eyebrow">Minis</p><h2>Mark your lie</h2></div><a href="shop-minis.html">View all →</a></div>
     <div class="grid" id="miniGrid"></div>
   </section>
 
   <section class="wrap shelf">
-    <div class="shelf-head"><h2>Bag Tags</h2><a href="shop-bag-tags.html">View all →</a></div>
+    <div class="shelf-head"><div><p class="eyebrow">Bag tags</p><h2>Claim your number</h2></div><a href="shop-bag-tags.html">View all →</a></div>
     <div class="grid" id="tagGrid"></div>
   </section>
 
@@ -249,8 +252,8 @@
     <div class="wrap league-inner">
       <div>
         <p class="eyebrow">Leagues &amp; clubs</p>
-        <h2>Running a league? Tag the whole card.</h2>
-        <p>Numbered tag sets with your league name and season engraved on every one. Order 10 or more and save 20%.</p>
+        <h2>Run your tag league.</h2>
+        <p>Numbered tag sets with your league name and season on every one, so the whole field can challenge for #1. Order 10 or more and save 20%.</p>
       </div>
       <a class="btn-light" href="#tag?qty=10&amp;top=YOUR%20LEAGUE">Build a league set</a>
     </div>
@@ -268,15 +271,15 @@
 <footer class="site-footer">
   <div class="wrap footer-inner">
     <div>
-      <a class="brand" href="#" data-home>EVANS<span>PRINTS</span></a>
-      <p>Custom disc golf minis and bag tags.</p>
+      <a class="brand" href="#" data-home aria-label="Lead Card Customs home"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#15181d"/><circle cx="16" cy="16" r="9" fill="none" stroke="#e6ff00" stroke-width="3"/><circle cx="16" cy="16" r="2.6" fill="#e6ff00"/></svg><span class="brand-text"><span class="brand-name">LEAD CARD</span><span class="brand-sub">CUSTOMS</span></span></a>
+      <p>Custom minis and bag tags for players who like to lead.</p>
     </div>
     <form class="newsletter" onsubmit="event.preventDefault();this.querySelector('button').textContent='Subscribed ✓'">
-      <label for="email">Get new drops in your inbox</label>
+      <label for="email">New colors, tag drops and league deals</label>
       <div><input id="email" type="email" placeholder="you@example.com" required><button class="btn-primary" type="submit">Subscribe</button></div>
     </form>
   </div>
-  <p class="wrap fine">© 2026 Evansprints · Website mockup</p>
+  <p class="wrap fine">© 2026 Lead Card Customs · Website mockup</p>
 </footer>
 
 <script src="app.js"></script>
