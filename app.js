@@ -1,4 +1,4 @@
-/* Lead Card Customs mockup — hero zoom, customizers, cart. No dependencies. */
+/* Mando Disc Co. mockup — hero zoom, customizers, cart. No dependencies. */
 (() => {
   'use strict';
   const $ = (s, el = document) => el.querySelector(s);
@@ -231,9 +231,9 @@
   }
 
   /* ---------------- cart ---------------- */
-  const KEY = 'leadcard-cart';
+  const KEY = 'mando-cart';
   let cart = [];
-  try { cart = JSON.parse(localStorage.getItem(KEY) || localStorage.getItem('evansprints-cart')) || []; } catch { cart = []; }
+  try { cart = JSON.parse(localStorage.getItem(KEY) || localStorage.getItem('leadcard-cart') || localStorage.getItem('evansprints-cart')) || []; } catch { cart = []; }
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(cart)); } catch {} };
   const cartEl = $('#cart'), scrim = $('#scrim');
 
