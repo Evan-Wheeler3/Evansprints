@@ -3,62 +3,270 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Evansprints — Disc Golf Gear</title>
+<title>Evansprints Disc Golf</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <header class="site-header">
-  <a class="brand" href="index.html">EVANS<span>PRINTS</span></a>
-  <nav class="site-nav">
-    <a href="shop-minis.html">Minis</a>
-    <a href="shop-bag-tags.html">Bag Tags</a>
+  <a class="brand" href="#" data-home>EVANS<span>PRINTS</span></a>
+  <nav class="site-nav" aria-label="Main">
+    <a href="#mini">Minis</a>
+    <a href="#tag">Bag Tags</a>
+    <a href="#leagues" class="hide-sm">Leagues</a>
+    <a href="#faq" class="hide-sm">FAQ</a>
   </nav>
+  <a class="cart-btn" href="#cart" aria-label="Cart">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 7a3 3 0 0 1 6 0" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+    <span class="cart-count" data-cart-count>0</span>
+  </a>
 </header>
 
-<main>
-<!-- Coordinates below are in the photo's own pixel space (1536 x 1024). -->
-<svg class="hero" viewBox="0 0 1536 1024" role="img" aria-labelledby="hero-title">
-  <title id="hero-title">Black and grey camo disc golf backpack full of colorful discs, with two bag tags clipped on and an orange mini marker on the floor beside it</title>
-  <defs>
-    <!-- feather the photo's light-grey studio edges into the white page -->
-    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5"/></filter>
-    <filter id="feather" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="38"/></filter>
-    <mask id="fade" maskUnits="userSpaceOnUse" x="0" y="0" width="1536" height="1024">
-      <rect x="70" y="-80" width="1396" height="1184" fill="#fff" filter="url(#feather)"/>
-    </mask>
-  </defs>
-  <image href="assets/hero-bag.jpg" width="1536" height="1024" mask="url(#fade)"/>
+<!-- ============ HERO STAGE ============ -->
+<section class="stage" id="stage">
+  <!-- Coordinates in this SVG are the photo's pixel space (1536 x 1024). The viewBox is animated to zoom. -->
+  <svg class="hero" id="hero" viewBox="0 0 1536 1024" role="img" aria-labelledby="hero-title">
+    <title id="hero-title">Black and grey camo disc golf backpack full of colorful discs, with two bag tags clipped on and an orange mini marker on the floor beside it</title>
+    <defs>
+      <filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5"/></filter>
+      <filter id="feather" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="38"/></filter>
+      <mask id="fade" maskUnits="userSpaceOnUse" x="0" y="0" width="1536" height="1024">
+        <rect x="70" y="-80" width="1396" height="1140" fill="#fff" filter="url(#feather)"/>
+      </mask>
+      <!-- live-preview recolor filters (matrix values set from app.js) -->
+      <filter id="fMini" color-interpolation-filters="sRGB"><feColorMatrix id="mMini" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0"/></filter>
+      <filter id="fTag" color-interpolation-filters="sRGB"><feColorMatrix id="mTag" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0"/></filter>
+      <clipPath id="clipMini"><path d="M1198 910 L1198 926 L1202 933 L1209 939 L1231 949 L1243 952 L1263 954 L1264 955 L1303 955 L1304 954 L1318 953 L1330 950 L1348 942 L1356 934 L1359 925 L1359 916 L1357 911 L1350 903 L1343 898 L1323 890 L1305 886 L1290 885 L1289 884 L1257 884 L1256 885 L1242 886 L1220 892 L1209 898 L1200 906Z"/></clipPath>
+      <clipPath id="clipTag"><ellipse cx="483" cy="369" rx="44" ry="47" transform="rotate(-8 483 369)"/></clipPath>
+    </defs>
 
-  <g class="callout">
-    <a class="item-link" href="shop-bag-tags.html" tabindex="-1" aria-label="Shop Bag Tags">
-      <path class="outline-glow" d="M588 363 L581 349 L568 334 L558 329 L555 326 L552 320 L555 312 L552 308 L546 307 L540 311 L536 309 L529 310 L527 313 L527 318 L531 328 L520 334 L517 333 L512 328 L514 323 L514 320 L512 317 L510 316 L503 317 L500 315 L498 311 L492 310 L483 319 L472 321 L463 325 L450 336 L445 343 L439 356 L437 366 L437 380 L440 392 L447 404 L461 415 L473 419 L485 419 L496 416 L507 411 L517 420 L525 424 L536 427 L546 427 L556 424 L568 417 L581 401 L587 382Z"/>
-      <path class="outline" d="M588 363 L581 349 L568 334 L558 329 L555 326 L552 320 L555 312 L552 308 L546 307 L540 311 L536 309 L529 310 L527 313 L527 318 L531 328 L520 334 L517 333 L512 328 L514 323 L514 320 L512 317 L510 316 L503 317 L500 315 L498 311 L492 310 L483 319 L472 321 L463 325 L450 336 L445 343 L439 356 L437 366 L437 380 L440 392 L447 404 L461 415 L473 419 L485 419 L496 416 L507 411 L517 420 L525 424 L536 427 L546 427 L556 424 L568 417 L581 401 L587 382Z"/>
-    </a>
-    <path class="leader-halo" d="M439 356 L352 300 L330 300"/>
-    <path class="leader" d="M439 356 L352 300 L330 300"/>
-    <circle class="dot" cx="439" cy="356" r="7"/>
-    <a class="cta" href="shop-bag-tags.html" aria-label="Shop Bag Tags">
-      <rect class="pill" x="40" y="268" width="290" height="64" rx="32"/>
-      <text x="66" y="310">Shop Bag Tags</text>
-      <path class="arrow" d="M298 300 h14 m-7 -7 l7 7 l-7 7"/>
-    </a>
-  </g>
+    <image href="assets/hero-bag.jpg" width="1536" height="1024" mask="url(#fade)"/>
+    <!-- recolored copies, clipped to the item, shown while customizing -->
+    <g class="tint" id="tintMini" clip-path="url(#clipMini)"><image href="assets/hero-bag.jpg" width="1536" height="1024" filter="url(#fMini)"/></g>
+    <g class="tint" id="tintTag" clip-path="url(#clipTag)"><image href="assets/hero-bag.jpg" width="1536" height="1024" filter="url(#fTag)"/></g>
 
-  <g class="callout">
-    <a class="item-link" href="shop-minis.html" tabindex="-1" aria-label="Shop Minis">
-      <path class="outline-glow" d="M1195 910 L1196 927 L1198 931 L1208 941 L1228 950 L1267 956 L1299 956 L1314 954 L1340 948 L1349 944 L1358 935 L1361 927 L1360 912 L1357 907 L1347 898 L1336 892 L1324 888 L1294 882 L1253 882 L1231 886 L1212 893 L1197 906Z"/>
-      <path class="outline" d="M1195 910 L1196 927 L1198 931 L1208 941 L1228 950 L1267 956 L1299 956 L1314 954 L1340 948 L1349 944 L1358 935 L1361 927 L1360 912 L1357 907 L1347 898 L1336 892 L1324 888 L1294 882 L1253 882 L1231 886 L1212 893 L1197 906Z"/>
-    </a>
-    <path class="leader-halo" d="M1324 888 L1366 760 L1366 712"/>
-    <path class="leader" d="M1324 888 L1366 760 L1366 712"/>
-    <circle class="dot" cx="1324" cy="888" r="7"/>
-    <a class="cta" href="shop-minis.html" aria-label="Shop Minis">
-      <rect class="pill" x="1236" y="648" width="264" height="64" rx="32"/>
-      <text x="1262" y="690">Shop Minis</text>
-      <path class="arrow" d="M1460 680 h14 m-7 -7 l7 7 l-7 7"/>
-    </a>
-  </g>
-</svg>
+    <!-- mini center stamp overlay (perspective-squashed to sit on the disc face) -->
+    <g id="miniStamp" class="stamp" transform="translate(1278 908) rotate(1.3) scale(1 .34)">
+      <text id="stampText" text-anchor="middle" dominant-baseline="central" font-size="58" font-weight="900" fill="#fff"></text>
+      <g id="stampBasket" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+        <path d="M-24 -26 h48 M-18 -26 v20 M18 -26 v20 M-20 -6 h40 l-6 14 h-28 Z M0 -40 V36 M-14 36 h28"/>
+      </g>
+      <g id="stampStar" style="display:none">
+        <path d="M0 -34 L9 -11 L33 -10 L14 5 L21 29 L0 15 L-21 29 L-14 5 L-33 -10 L-9 -11 Z" fill="#fff"/>
+      </g>
+    </g>
+
+    <g class="callout" data-item="tag">
+      <a class="item-link" href="#tag" tabindex="-1" aria-label="Customize a bag tag">
+        <path class="outline-glow" d="M588 363 L581 349 L568 334 L558 329 L555 326 L552 320 L555 312 L552 308 L546 307 L540 311 L536 309 L529 310 L527 313 L527 318 L531 328 L520 334 L517 333 L512 328 L514 323 L514 320 L512 317 L510 316 L503 317 L500 315 L498 311 L492 310 L483 319 L472 321 L463 325 L450 336 L445 343 L439 356 L437 366 L437 380 L440 392 L447 404 L461 415 L473 419 L485 419 L496 416 L507 411 L517 420 L525 424 L536 427 L546 427 L556 424 L568 417 L581 401 L587 382Z"/>
+        <path class="outline" d="M588 363 L581 349 L568 334 L558 329 L555 326 L552 320 L555 312 L552 308 L546 307 L540 311 L536 309 L529 310 L527 313 L527 318 L531 328 L520 334 L517 333 L512 328 L514 323 L514 320 L512 317 L510 316 L503 317 L500 315 L498 311 L492 310 L483 319 L472 321 L463 325 L450 336 L445 343 L439 356 L437 366 L437 380 L440 392 L447 404 L461 415 L473 419 L485 419 L496 416 L507 411 L517 420 L525 424 L536 427 L546 427 L556 424 L568 417 L581 401 L587 382Z"/>
+      </a>
+      <g class="label">
+        <path class="leader-halo" d="M439 356 L352 300 L330 300"/>
+        <path class="leader" d="M439 356 L352 300 L330 300"/>
+        <circle class="dot" cx="439" cy="356" r="7"/>
+        <a class="cta" href="#tag" aria-label="Shop Bag Tags">
+          <rect class="pill" x="40" y="268" width="290" height="64" rx="32"/>
+          <text x="66" y="310">Shop Bag Tags</text>
+          <path class="arrow" d="M298 300 h14 m-7 -7 l7 7 l-7 7"/>
+        </a>
+      </g>
+    </g>
+
+    <g class="callout" data-item="mini">
+      <a class="item-link" href="#mini" tabindex="-1" aria-label="Customize a mini">
+        <path class="outline-glow" d="M1195 910 L1196 927 L1198 931 L1208 941 L1228 950 L1267 956 L1299 956 L1314 954 L1340 948 L1349 944 L1358 935 L1361 927 L1360 912 L1357 907 L1347 898 L1336 892 L1324 888 L1294 882 L1253 882 L1231 886 L1212 893 L1197 906Z"/>
+        <path class="outline" d="M1195 910 L1196 927 L1198 931 L1208 941 L1228 950 L1267 956 L1299 956 L1314 954 L1340 948 L1349 944 L1358 935 L1361 927 L1360 912 L1357 907 L1347 898 L1336 892 L1324 888 L1294 882 L1253 882 L1231 886 L1212 893 L1197 906Z"/>
+      </a>
+      <g class="label">
+        <path class="leader-halo" d="M1324 888 L1366 760 L1366 712"/>
+        <path class="leader" d="M1324 888 L1366 760 L1366 712"/>
+        <circle class="dot" cx="1324" cy="888" r="7"/>
+        <a class="cta" href="#mini" aria-label="Shop Minis">
+          <rect class="pill" x="1236" y="648" width="264" height="64" rx="32"/>
+          <text x="1262" y="690">Shop Minis</text>
+          <path class="arrow" d="M1460 680 h14 m-7 -7 l7 7 l-7 7"/>
+        </a>
+      </g>
+    </g>
+  </svg>
+  <p class="stage-hint">Tap a highlighted item to design your own</p>
+</section>
+
+<!-- ============ CUSTOMIZER PANEL ============ -->
+<aside class="panel" id="panel" aria-label="Customizer" aria-hidden="true">
+  <div class="panel-head">
+    <button class="icon-btn" data-close aria-label="Back to the bag">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div>
+      <p class="eyebrow" id="panelEyebrow">Customize</p>
+      <h2 id="panelTitle">Mini Marker</h2>
+    </div>
+    <span class="panel-price" id="panelPrice">$6</span>
+  </div>
+
+  <!-- MINI FORM -->
+  <form class="panel-body" id="miniForm" data-kind="mini" hidden>
+    <fieldset>
+      <legend>Color <span class="value" id="miniColorName">Orange</span></legend>
+      <div class="swatches" id="miniSwatches"></div>
+    </fieldset>
+    <fieldset>
+      <legend>Center stamp</legend>
+      <div class="seg" role="radiogroup">
+        <label><input type="radio" name="stamp" value="none" checked><span>Ring only</span></label>
+        <label><input type="radio" name="stamp" value="initials"><span>Initials</span></label>
+        <label><input type="radio" name="stamp" value="basket"><span>Basket</span></label>
+        <label><input type="radio" name="stamp" value="star"><span>Star</span></label>
+      </div>
+      <label class="field" id="initialsField" hidden>
+        <span>Initials <small>(up to 3, +$1)</small></span>
+        <input type="text" name="initials" maxlength="3" placeholder="EVW" autocomplete="off">
+      </label>
+    </fieldset>
+    <fieldset>
+      <legend>Finish</legend>
+      <div class="seg">
+        <label><input type="radio" name="finish" value="Glossy" checked><span>Glossy</span></label>
+        <label><input type="radio" name="finish" value="Matte"><span>Matte</span></label>
+      </div>
+    </fieldset>
+    <p class="note">Buy 5 or more minis and save 15%.</p>
+  </form>
+
+  <!-- TAG FORM -->
+  <form class="panel-body" id="tagForm" data-kind="tag" hidden>
+    <div class="tag-preview">
+      <svg viewBox="0 0 200 200" id="tagPreview" aria-label="Engraving preview">
+        <defs>
+          <linearGradient id="pvMetal" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" id="pv0"/><stop offset=".5" id="pv1"/><stop offset="1" id="pv2"/>
+          </linearGradient>
+          <path id="pvArc" d="M40 100 A60 60 0 0 1 160 100"/>
+        </defs>
+        <circle cx="100" cy="100" r="86" fill="url(#pvMetal)" stroke="rgba(0,0,0,.25)" stroke-width="2"/>
+        <circle cx="100" cy="100" r="74" fill="none" stroke="rgba(0,0,0,.18)" stroke-width="1.5"/>
+        <circle cx="100" cy="24" r="7" fill="#fff" stroke="rgba(0,0,0,.3)" stroke-width="1.5"/>
+        <text class="pv-ink" font-size="13" font-weight="800" letter-spacing="2"><textPath href="#pvArc" startOffset="50%" text-anchor="middle" id="pvTop">LEAGUE</textPath></text>
+        <text class="pv-ink" id="pvNum" x="100" y="120" text-anchor="middle" font-size="62" font-weight="900">1</text>
+        <text class="pv-ink" id="pvBottom" x="100" y="152" text-anchor="middle" font-size="12" font-weight="700" letter-spacing="2">2026</text>
+      </svg>
+      <p>Engraving preview</p>
+    </div>
+    <fieldset>
+      <legend>Metal <span class="value" id="tagMetalName">Stainless</span></legend>
+      <div class="swatches" id="tagSwatches"></div>
+    </fieldset>
+    <div class="row">
+      <label class="field"><span>Tag number</span><input type="number" name="number" min="1" max="9999" value="1" inputmode="numeric"></label>
+      <label class="field"><span>Font</span>
+        <select name="font"><option value="block">Block</option><option value="classic">Classic serif</option></select>
+      </label>
+    </div>
+    <label class="field"><span>Top text <small>(league or club, up to 18)</small></span><input type="text" name="top" maxlength="18" value="LEAGUE" autocomplete="off"></label>
+    <label class="field"><span>Bottom text <small>(season, up to 10)</small></span><input type="text" name="bottom" maxlength="10" value="2026" autocomplete="off"></label>
+    <fieldset>
+      <legend>Attachment</legend>
+      <div class="seg">
+        <label><input type="radio" name="attach" value="Ball chain" checked><span>Ball chain</span></label>
+        <label><input type="radio" name="attach" value="Split ring"><span>Split ring</span></label>
+        <label><input type="radio" name="attach" value="Carabiner"><span>Carabiner +$3</span></label>
+      </div>
+    </fieldset>
+    <p class="note" id="leagues-note">League sets: order 10 or more tags and save 20%.</p>
+  </form>
+
+  <div class="panel-foot">
+    <div class="qty" aria-label="Quantity">
+      <button type="button" data-qty="-1" aria-label="Decrease">−</button>
+      <output id="qty">1</output>
+      <button type="button" data-qty="1" aria-label="Increase">+</button>
+    </div>
+    <button type="button" class="btn-primary" id="addBtn">Add to cart · <span id="addTotal">$6</span></button>
+  </div>
+</aside>
+
+<!-- ============ CART DRAWER ============ -->
+<aside class="panel cart" id="cart" aria-label="Cart" aria-hidden="true">
+  <div class="panel-head">
+    <div><p class="eyebrow">Your bag</p><h2>Cart</h2></div>
+    <button class="icon-btn" data-close-cart aria-label="Close cart">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <div class="panel-body" id="cartList"></div>
+  <div class="panel-foot cart-foot">
+    <div class="subtotal"><span>Subtotal</span><strong id="subtotal">$0</strong></div>
+    <button type="button" class="btn-primary" id="checkoutBtn">Checkout</button>
+  </div>
+</aside>
+<div class="scrim" id="scrim" hidden></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- ============ PAGE CONTENT ============ -->
+<main class="content">
+  <section class="intro wrap">
+    <h1>Make your bag unmistakably yours.</h1>
+    <p>Custom mini markers and engraved bag tags, made to order. Tap a highlighted item on the bag to start designing, and watch it change as you go.</p>
+    <div class="intro-cta">
+      <a class="btn-primary" href="#mini">Design a mini</a>
+      <a class="btn-ghost" href="#tag">Design a bag tag</a>
+    </div>
+  </section>
+
+  <section class="steps wrap" aria-label="How it works">
+    <div class="step"><span>1</span><h3>Pick your piece</h3><p>Choose a mini marker or a bag tag right off the bag.</p></div>
+    <div class="step"><span>2</span><h3>Customize it live</h3><p>Colors, stamps, metals and engraving update on the photo as you go.</p></div>
+    <div class="step"><span>3</span><h3>We make it</h3><p>Every piece is printed or engraved to order and shipped to your door.</p></div>
+  </section>
+
+  <section class="wrap shelf">
+    <div class="shelf-head"><h2>Minis</h2><a href="shop-minis.html">View all →</a></div>
+    <div class="grid" id="miniGrid"></div>
+  </section>
+
+  <section class="wrap shelf">
+    <div class="shelf-head"><h2>Bag Tags</h2><a href="shop-bag-tags.html">View all →</a></div>
+    <div class="grid" id="tagGrid"></div>
+  </section>
+
+  <section class="league" id="leagues">
+    <div class="wrap league-inner">
+      <div>
+        <p class="eyebrow">Leagues &amp; clubs</p>
+        <h2>Running a league? Tag the whole card.</h2>
+        <p>Numbered tag sets with your league name and season engraved on every one. Order 10 or more and save 20%.</p>
+      </div>
+      <a class="btn-light" href="#tag?qty=10&amp;top=YOUR%20LEAGUE">Build a league set</a>
+    </div>
+  </section>
+
+  <section class="wrap faq" id="faq">
+    <h2>Questions</h2>
+    <details><summary>Are minis legal for tournament play?</summary><p>Minis are a standard way to mark your lie. Our standard minis are about 3 inches across. If you play sanctioned events, check the current PDGA rulebook for marker disc size limits.</p></details>
+    <details><summary>Can I get a specific tag number?</summary><p>Any number from 1 to 9999. League sets can be numbered in sequence. Just add a note at checkout.</p></details>
+    <details><summary>How long does an order take?</summary><p>Most orders are made and shipped within a week.</p></details>
+    <details><summary>What if my engraving has a typo?</summary><p>We send a proof for every engraved order before we cut it.</p></details>
+  </section>
 </main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div>
+      <a class="brand" href="#" data-home>EVANS<span>PRINTS</span></a>
+      <p>Custom disc golf minis and bag tags.</p>
+    </div>
+    <form class="newsletter" onsubmit="event.preventDefault();this.querySelector('button').textContent='Subscribed ✓'">
+      <label for="email">Get new drops in your inbox</label>
+      <div><input id="email" type="email" placeholder="you@example.com" required><button class="btn-primary" type="submit">Subscribe</button></div>
+    </form>
+  </div>
+  <p class="wrap fine">© 2026 Evansprints · Website mockup</p>
+</footer>
+
+<script src="app.js"></script>
 </body>
 </html>

@@ -3,55 +3,74 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Shop Minis — Evansprints</title>
+<title>Shop Minis | Evansprints</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <header class="site-header">
   <a class="brand" href="index.html">EVANS<span>PRINTS</span></a>
-  <nav class="site-nav">
+  <nav class="site-nav" aria-label="Main">
     <a href="shop-minis.html" aria-current="page">Minis</a>
     <a href="shop-bag-tags.html">Bag Tags</a>
+    <a href="index.html#leagues" class="hide-sm">Leagues</a>
+    <a href="index.html#faq" class="hide-sm">FAQ</a>
   </nav>
+  <a class="cart-btn" href="index.html#cart" aria-label="Cart">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 7a3 3 0 0 1 6 0" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+  </a>
 </header>
-<main>
+<main class="wrap">
   <section class="shop-head">
     <a class="back" href="index.html">&larr; Back to the bag</a>
     <h1>Shop Minis</h1>
-    <p>Mini markers to mark your lie. Lightweight, bright, and easy to spot in the grass.</p>
+    <p>Mini markers to mark your lie. Pick a color, then add initials or a stamp in the customizer.</p>
   </section>
   <section class="grid">
-    <article class="card">
-      <div class="img photo"><img src="assets/mini-orange.jpg" alt="Orange mini marker disc with white ring stamp" loading="lazy"></div>
-      <div class="info"><div><h3>Blaze Mini</h3><small>Orange · stamped plastic</small></div><span class="price">$6</span></div>
-      <a class="btn" href="#">Add to cart</a>
-    </article>
-    <article class="card">
-      <div class="img photo"><img src="assets/mini-orange.jpg" alt="Teal mini marker disc with white ring stamp" loading="lazy" style="filter:hue-rotate(160deg) saturate(.9)"></div>
-      <div class="info"><div><h3>Fairway Mini</h3><small>Teal · stamped plastic</small></div><span class="price">$6</span></div>
-      <a class="btn" href="#">Add to cart</a>
-    </article>
-    <article class="card">
-      <div class="img photo"><img src="assets/mini-orange.jpg" alt="Blue mini marker disc with white ring stamp" loading="lazy" style="filter:hue-rotate(200deg)"></div>
-      <div class="info"><div><h3>Ocean Mini</h3><small>Blue · stamped plastic</small></div><span class="price">$6</span></div>
-      <a class="btn" href="#">Add to cart</a>
-    </article>
-    <article class="card">
-      <div class="img photo"><img src="assets/mini-orange.jpg" alt="Purple mini marker disc with white ring stamp" loading="lazy" style="filter:hue-rotate(250deg)"></div>
-      <div class="info"><div><h3>Ultraviolet Mini</h3><small>Purple · stamped plastic</small></div><span class="price">$7</span></div>
-      <a class="btn" href="#">Add to cart</a>
-    </article>
-    <article class="card">
-      <div class="img photo"><img src="assets/mini-orange.jpg" alt="Pink mini marker disc with white ring stamp" loading="lazy" style="filter:hue-rotate(310deg) saturate(.9)"></div>
-      <div class="info"><div><h3>Ace Run Mini</h3><small>Pink · stamped plastic</small></div><span class="price">$7</span></div>
-      <a class="btn" href="#">Add to cart</a>
-    </article>
-    <article class="card">
-      <div class="img photo"><img src="assets/mini-orange.jpg" alt="Yellow mini marker disc with white ring stamp" loading="lazy" style="filter:hue-rotate(32deg) brightness(1.25) saturate(1.2)"></div>
-      <div class="info"><div><h3>Sunburst Mini</h3><small>Yellow · stamped plastic</small></div><span class="price">$6</span></div>
-      <a class="btn" href="#">Add to cart</a>
-    </article>
+    <a class="card" href="index.html#mini?color=orange">
+      <div class="img"><img src="assets/mini-orange.jpg" alt="Orange Mini" loading="lazy"></div>
+      <div class="info"><div><h3>Orange Mini</h3><small>Stamped plastic</small></div><span class="price">$6</span></div>
+      <span class="btn">Customize</span>
+    </a>
+    <a class="card" href="index.html#mini?color=teal">
+      <div class="img"><img src="assets/mini-orange.jpg" alt="Teal Mini" loading="lazy" style="filter:hue-rotate(160deg) saturate(.9)"></div>
+      <div class="info"><div><h3>Teal Mini</h3><small>Stamped plastic</small></div><span class="price">$6</span></div>
+      <span class="btn">Customize</span>
+    </a>
+    <a class="card" href="index.html#mini?color=blue">
+      <div class="img"><img src="assets/mini-orange.jpg" alt="Blue Mini" loading="lazy" style="filter:hue-rotate(200deg)"></div>
+      <div class="info"><div><h3>Blue Mini</h3><small>Stamped plastic</small></div><span class="price">$6</span></div>
+      <span class="btn">Customize</span>
+    </a>
+    <a class="card" href="index.html#mini?color=purple">
+      <div class="img"><img src="assets/mini-orange.jpg" alt="Purple Mini" loading="lazy" style="filter:hue-rotate(250deg)"></div>
+      <div class="info"><div><h3>Purple Mini</h3><small>Stamped plastic</small></div><span class="price">$6</span></div>
+      <span class="btn">Customize</span>
+    </a>
+    <a class="card" href="index.html#mini?color=pink">
+      <div class="img"><img src="assets/mini-orange.jpg" alt="Pink Mini" loading="lazy" style="filter:hue-rotate(310deg) saturate(.9)"></div>
+      <div class="info"><div><h3>Pink Mini</h3><small>Stamped plastic</small></div><span class="price">$6</span></div>
+      <span class="btn">Customize</span>
+    </a>
+    <a class="card" href="index.html#mini?color=yellow">
+      <div class="img"><img src="assets/mini-orange.jpg" alt="Yellow Mini" loading="lazy" style="filter:hue-rotate(32deg) brightness(1.25) saturate(1.2)"></div>
+      <div class="info"><div><h3>Yellow Mini</h3><small>Stamped plastic</small></div><span class="price">$6</span></div>
+      <span class="btn">Customize</span>
+    </a>
+    <a class="card" href="index.html#mini?color=black">
+      <div class="img"><img src="assets/mini-orange.jpg" alt="Black Mini" loading="lazy" style="filter:saturate(0) brightness(.32)"></div>
+      <div class="info"><div><h3>Black Mini</h3><small>Stamped plastic</small></div><span class="price">$6</span></div>
+      <span class="btn">Customize</span>
+    </a>
+    <a class="card" href="index.html#mini?color=glow">
+      <div class="img"><img src="assets/mini-orange.jpg" alt="Glow in the dark Mini" loading="lazy" style="filter:hue-rotate(80deg) saturate(.45) brightness(1.35)"></div>
+      <div class="info"><div><h3>Glow in the dark Mini</h3><small>Stamped plastic</small></div><span class="price">$8</span></div>
+      <span class="btn">Customize</span>
+    </a>
   </section>
 </main>
+<footer class="site-footer"><p class="wrap fine">© 2026 Evansprints · Website mockup</p></footer>
 </body>
 </html>

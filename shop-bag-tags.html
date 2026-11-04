@@ -3,40 +3,54 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Shop Bag Tags — Evansprints</title>
+<title>Shop Bag Tags | Evansprints</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <header class="site-header">
   <a class="brand" href="index.html">EVANS<span>PRINTS</span></a>
-  <nav class="site-nav">
+  <nav class="site-nav" aria-label="Main">
     <a href="shop-minis.html">Minis</a>
     <a href="shop-bag-tags.html" aria-current="page">Bag Tags</a>
+    <a href="index.html#leagues" class="hide-sm">Leagues</a>
+    <a href="index.html#faq" class="hide-sm">FAQ</a>
   </nav>
+  <a class="cart-btn" href="index.html#cart" aria-label="Cart">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 7a3 3 0 0 1 6 0" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+  </a>
 </header>
-<main>
+<main class="wrap">
   <section class="shop-head">
     <a class="back" href="index.html">&larr; Back to the bag</a>
     <h1>Shop Bag Tags</h1>
-    <p>Challenge-ready bag tags for leagues, clubs, and bragging rights. Clip them on and defend your number.</p>
+    <p>Challenge-ready tags for leagues, clubs and bragging rights. Choose a metal, then engrave your number and league name.</p>
   </section>
   <section class="grid">
-    <article class="card">
-      <div class="img photo"><img src="assets/tag-stainless.jpg" alt="Stainless bag tag with engraved number on ball chain" loading="lazy"></div>
+    <a class="card" href="index.html#tag?metal=stainless">
+      <div class="img"><img src="assets/tag-stainless.jpg" alt="Stainless Tag" loading="lazy"></div>
       <div class="info"><div><h3>Stainless Tag</h3><small>Brushed steel · your number</small></div><span class="price">$18</span></div>
-      <a class="btn" href="#">Add to cart</a>
-    </article>
-    <article class="card">
-      <div class="img photo"><img src="assets/tag-brass.jpg" alt="Brass bag tag with engraved number on ball chain"></div>
-      <div class="info"><div><h3>Brass Tag</h3><small>Brass finish · your number</small></div><span class="price">$22</span></div>
-      <a class="btn" href="#">Add to cart</a>
-    </article>
-    <article class="card">
-      <div class="img photo"><img src="assets/tag-copper.jpg" alt="Copper bag tag with engraved number on ball chain"></div>
-      <div class="info"><div><h3>Copper Tag</h3><small>Copper finish · your number</small></div><span class="price">$20</span></div>
-      <a class="btn" href="#">Add to cart</a>
-    </article>
+      <span class="btn">Engrave yours</span>
+    </a>
+    <a class="card" href="index.html#tag?metal=brass">
+      <div class="img"><img src="assets/tag-brass.jpg" alt="Brass Tag" loading="lazy"></div>
+      <div class="info"><div><h3>Brass Tag</h3><small>Warm brass · your number</small></div><span class="price">$22</span></div>
+      <span class="btn">Engrave yours</span>
+    </a>
+    <a class="card" href="index.html#tag?metal=copper">
+      <div class="img"><img src="assets/tag-copper.jpg" alt="Copper Tag" loading="lazy"></div>
+      <div class="info"><div><h3>Copper Tag</h3><small>Rich copper · your number</small></div><span class="price">$20</span></div>
+      <span class="btn">Engrave yours</span>
+    </a>
+    <a class="card" href="index.html#tag?qty=10&amp;top=YOUR%20LEAGUE">
+      <div class="img"><img src="assets/tag-stainless.jpg" alt="League Set (10)" loading="lazy"></div>
+      <div class="info"><div><h3>League Set (10)</h3><small>Numbered set · 20% off</small></div><span class="price">$144</span></div>
+      <span class="btn">Build a set</span>
+    </a>
   </section>
 </main>
+<footer class="site-footer"><p class="wrap fine">© 2026 Evansprints · Website mockup</p></footer>
 </body>
 </html>
