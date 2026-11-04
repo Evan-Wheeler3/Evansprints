@@ -1,6 +1,7 @@
 :root{
   --bg:#ffffff; --ink:#15181d; --muted:#6b7280; --line:#e7e7ea;
   --accent:#ff5a1f; --accent-soft:rgba(255,90,31,.10);
+  --hl:#e6ff00; --hl-edge:rgba(40,44,0,.55);
 }
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:var(--ink);font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
@@ -15,11 +16,11 @@ main{max-width:1180px;margin:0 auto;padding:0 16px}
 
 /* hero */
 .hero{display:block;width:100%;height:auto;max-height:calc(100vh - 70px);margin:0 auto}
-.outline{fill:none;stroke:var(--accent);stroke-width:3.5;stroke-linejoin:round;transition:stroke-width .2s}
-.outline-glow{fill:none;stroke:var(--accent);stroke-width:10;stroke-linejoin:round;filter:url(#glow);opacity:.55;animation:pulse 2.2s ease-in-out infinite}
-.leader{stroke:var(--accent);stroke-width:2.5;fill:none}
-.leader-halo{stroke:#fff;stroke-width:7;fill:none;stroke-linecap:round}
-.dot{fill:var(--accent)}
+.outline{fill:none;stroke:var(--hl);stroke-width:6;stroke-linejoin:round;filter:drop-shadow(0 0 1.2px var(--hl-edge));transition:stroke-width .2s}
+.outline-glow{fill:none;stroke:var(--hl);stroke-width:18;stroke-linejoin:round;filter:url(#glow);opacity:.75;animation:pulse 2.2s ease-in-out infinite}
+.leader{stroke:var(--hl);stroke-width:4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.leader-halo{stroke:var(--hl-edge);stroke-width:6.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.dot{fill:var(--hl);stroke:var(--hl-edge);stroke-width:1.5}
 .cta .pill{fill:#fff;stroke:var(--ink);stroke-width:2;transition:fill .2s}
 .cta text{font:700 var(--cta-size,26px) "Inter",system-ui,sans-serif;fill:var(--ink);transition:fill .2s}
 .cta .arrow{stroke:var(--ink);stroke-width:2.5;fill:none;transition:transform .2s}
@@ -29,9 +30,9 @@ main{max-width:1180px;margin:0 auto;padding:0 16px}
 .cta:hover text,.cta:focus-visible text{fill:#fff}
 .cta:hover .arrow,.cta:focus-visible .arrow{stroke:#fff;transform:translateX(5px)}
 .target{transition:filter .2s}
-.callout:has(.cta:hover) .outline{stroke-width:5}
+.callout:has(.cta:hover) .outline{stroke-width:8}
 .callout:has(.cta:hover) .outline-glow{opacity:.9;animation:none}
-@keyframes pulse{50%{opacity:.2}}
+@keyframes pulse{50%{opacity:.35}}
 @media (prefers-reduced-motion:reduce){.outline-glow{animation:none}}
 
 /* shop pages */
